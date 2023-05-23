@@ -1,12 +1,12 @@
 package br.com.fiap.security.api.controller;
 
-import br.com.fiap.security.api.model.Crime;
 import br.com.fiap.security.api.model.Procurado;
 import br.com.fiap.security.api.repository.ProcuradoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -34,5 +34,11 @@ public class ProcuradoController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("todos")
+    public ResponseEntity<List<Procurado>> obterTodosProcurados() {
+        List<Procurado> procurados = procuradoRepository.findAll();
+        return ResponseEntity.ok(procurados);
     }
 }
