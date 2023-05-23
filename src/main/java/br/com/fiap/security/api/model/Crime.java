@@ -1,18 +1,22 @@
 package br.com.fiap.security.api.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity(name = "crime")
 @Table(name = "tb_crime")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Crime {
 
     @Id
@@ -29,6 +33,7 @@ public class Crime {
 
     @ManyToOne
     @JoinColumn(name = "id_procurado", nullable = false)
+    @JsonIgnore
     private Procurado procurado;
 
 }

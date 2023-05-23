@@ -1,11 +1,13 @@
 package br.com.fiap.security.api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +16,8 @@ import java.util.Set;
 @Table(name = "tb_procurado")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Procurado {
 
     @Id
@@ -66,17 +70,17 @@ public class Procurado {
     @Column(name = "vl_recompensa")
     private Double recompensa;
 
-    @OneToMany
+    @OneToMany(mappedBy = "procurado")
     private List<Crime> crimes;
 
-    @OneToMany
+    @OneToMany(mappedBy = "procurado")
     private List<ApelidoProcurado> apelidoProcurados;
 
-    @OneToMany
+    @OneToMany(mappedBy = "procurado")
     private List<DocumentoProcurado> documentoProcurados;
 
     @ManyToMany
-    @JoinTable(name = "produto_categoria",
+    @JoinTable(name = "procurado_idioma",
             joinColumns = @JoinColumn(name = "id_procurado"),
             inverseJoinColumns = @JoinColumn(name = "id_idioma"))
     private Set<Idioma> idiomas = new HashSet<>();

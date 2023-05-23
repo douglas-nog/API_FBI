@@ -1,10 +1,9 @@
 package br.com.fiap.security.api.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity(name = "apelidoProcurado")
@@ -13,7 +12,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class ApelidoProcurado {
 
     @Id
@@ -28,6 +26,7 @@ public class ApelidoProcurado {
 
     @ManyToOne
     @JoinColumn(name = "id_procurado", referencedColumnName = "id_procurado", nullable = false)
+    @JsonIgnore
     private Procurado procurado;
 
 }

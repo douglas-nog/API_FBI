@@ -2,6 +2,7 @@ package br.com.fiap.security.api.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -15,7 +16,6 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class DocumentoProcurado {
 
     @Id
@@ -37,6 +37,7 @@ public class DocumentoProcurado {
 
     @ManyToOne
     @JoinColumn(name = "id_procurado", referencedColumnName = "id_procurado", nullable = false)
+    @JsonIgnore
     private Procurado procurado;
 
 

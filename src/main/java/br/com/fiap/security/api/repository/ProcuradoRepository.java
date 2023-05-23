@@ -9,4 +9,5 @@ public interface ProcuradoRepository extends JpaRepository<Procurado, Long> {
 
     Procurado findByNome(String nome);
 
+    Procurado findByNomeContaining(String nome);
 }
